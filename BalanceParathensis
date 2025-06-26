@@ -1,0 +1,47 @@
+class problem2 {
+    static class Stack {
+        int cursor = -1;
+        final int size;
+        char[] slots;
+        Stack(int cap) {
+            size = cap;
+            slots = new char[size];
+        }
+        void push(char ch) {
+            if (cursor == size - 1) {
+                System.out.println("Stack Overflow");
+                return;
+            }
+            slots[++cursor] = ch;
+        }
+        char pop() {
+            if (cursor < 0) return '\0';
+            return slots[cursor--];
+        }
+        boolean isEmpty() {
+            return cursor < 0;
+        }
+    }
+    static boolean areParenthesesBalanced(String s) {
+        Stack stk = new Stack(s.length());
+        for (int p = 0; p < s.length(); p++) {
+            char c = s.charAt(p);
+            if (c == '(') {
+                stk.push(c);
+            } else if (c == ')') {
+                if (stk.isEmpty()) return false;
+                stk.pop();
+            }
+        }
+        return stk.isEmpty();
+    }
+    public static void main(String[] args) {
+        String expr = "(a+b)*(c+(d-e))";
+        System.out.println(
+                areParenthesesBalanced(expr)
+
+                        ? "The parentheses are balanced."
+                        : "The parentheses are NOT balanced."
+        );
+    }
+}
