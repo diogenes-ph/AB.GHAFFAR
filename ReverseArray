@@ -1,0 +1,51 @@
+class ReverseArray {
+    static class Stack {
+        int height = -1;
+        final int limit;
+        int[] cells;
+        Stack(int sz) {
+            limit = sz;
+            cells = new int[limit];
+        }
+        void push(int elem) {
+            if (height == limit - 1) {
+                System.out.println("Stack Overflow");
+                return;
+            }
+            cells[++height] = elem;
+        }
+        int pop() {
+            if (height < 0) {
+                System.out.println("Stack Underflow");
+                return -1;
+            }
+            return cells[height--];
+        }
+        boolean isEmpty() {
+            return height < 0;
+        }
+    }
+    static void reverseArray(int[] source) {
+        Stack buff = new Stack(source.length);
+        for (int val : source) {
+            buff.push(val);
+        }
+        int idx = 0;
+        while (!buff.isEmpty()) {
+            source[idx++] = buff.pop();
+        }
+    }
+    public static void main(String[] args) {
+        int[] sample = { 1, 2, 3, 4, 5, 6, 7, 8 };
+        System.out.print("Original: ");
+        for (int n : sample) System.out.print(n + " ");
+        reverseArray(sample);
+        System.out.print("\nReversed: ");
+        for (int n : sample) System.out.print(n + " ");
+    }
+}
+
+
+OUTPUT:Original:
+1 2 3 4 5 6 7 8 
+Reversed: 8 7 6 5 4 3 2 1
