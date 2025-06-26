@@ -1,0 +1,14 @@
+ class SumOfArray {
+    static int recursiveSum(int[] nums, int pos) {
+        if (pos == nums.length) return 0; // base case
+        return nums[pos] + recursiveSum(nums, pos + 1);
+    }
+    public static void main(String[] args) {
+        int[] sampleSet = { 5, 10, 15, 20, 25 };
+        int grandTotal = recursiveSum(sampleSet, 0);
+        System.out.println("Sum of array elements: " + grandTotal);
+    }
+}
+
+OUTPUT:
+Sum of array elements: 75
