@@ -45,3 +45,6 @@ class problem2 {
         );
     }
 }
+
+OUTPUT
+The parentheses are balanced.
